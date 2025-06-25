@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.navbar {
+    z-index: 1050;
+    position: relative;
+}
+
+.layout {
+    display: flex;
+    /* height: 100vh; */
+    /* overflow: hidden; */
+}
+
+/* サイドパネル */
+#toc-panel {
+    /* left: 0; */
+    /* top: 0; */
+    width: 200px;
+    height: 100%;
+    background-color: #ffffff;
+    /* overflow-y: auto; */
+    /* position: sticky; */
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /* transition: transform 0.3s ease; */
+    /* transform: translateX(-100%); */
+    /* 最初は隠す */
+    z-index: 1000;
+}
+
+#article-toc a {
+    display: block;
+    padding: 4px 8px;
+    color: #333;
+    text-decoration: none;
+}
+
+#article-toc a:hover {
+    background-color: #eaeaea;
+}
+
+/* 通常の見出し余白 */
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* 最初の要素が見出しだった場合、上の余白をなくす */
+#content> :first-child {
+    margin-top: 0 !important;
+}
+
+#content hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid #888;
+}
+
+/* Code Block */
+pre {
+    background: #303446;
+    padding: 0.6em 1em;
+    overflow-x: auto;
+}
+
+code {
+    background: #eee;
+}
