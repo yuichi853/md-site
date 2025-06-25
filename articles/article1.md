@@ -122,7 +122,7 @@ for i in range(3):
 
 ---
 
-#### Golang
+#### Go
 
 ```go
 package main
