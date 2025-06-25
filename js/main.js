@@ -30,6 +30,11 @@ window.addEventListener("DOMContentLoaded", () => {
             const contentEl = document.getElementById("content");
             contentEl.innerHTML = html;
 
+            // Markdown描画後に画像にBootstrapのimg-fluidを追加
+            contentEl.querySelectorAll("img").forEach(img => {
+                img.classList.add("img-fluid");
+            });
+
             // YouTubeリンクをiframeに変換
             contentEl.querySelectorAll("a").forEach(link => {
                 const href = link.href;
