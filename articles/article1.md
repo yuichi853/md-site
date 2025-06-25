@@ -2,7 +2,7 @@
 
 これはMarkdownの各種構文の説明と、MarkDownをHTMLに変換した際の表示確認のためのサンプルです
 
-MarkDownの原文ファイルは[こちらのリンクからご覧いただけます](https://github.com/yuichi-853/md-site/blob/main/articles/article1.md)。
+MarkDownの原文ファイルは[こちらのリンクからご覧いただけます](https://raw.githubusercontent.com/yuichi-853/md-site/refs/heads/main/articles/article1.md)。
 
 ---
 
