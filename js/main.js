@@ -88,7 +88,6 @@ function generateToc() {
     tocContainer.innerHTML = "";
 
     const headings = document.querySelectorAll("#content h1, #content h2");
-    // const headings = document.querySelectorAll("#content h1, #content h2, #content h3");
     headings.forEach(heading => {
         if (!heading.id) {
             heading.id = heading.textContent.replace(/\s+/g, "-").toLowerCase();
@@ -96,7 +95,13 @@ function generateToc() {
         const link = document.createElement("a");
         link.href = `#${heading.id}`;
         link.textContent = heading.textContent;
-        link.style.marginLeft = `${(parseInt(heading.tagName[1]) - 1) * 10}px`;
+
+        const level = parseInt(heading.tagName.substring(1), 10); // 1 or 2
+        link.classList.add(level === 1 ? "toc-h1" : "toc-h2");
+
+        // 既存の少しインデント（h2だけ10px）
+        link.style.marginLeft = `${(level - 1) * 10}px`;
+
         tocContainer.appendChild(link);
     });
 }

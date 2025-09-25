@@ -40,6 +40,16 @@ body {
     text-decoration: none;
 }
 
+#article-toc a.toc-h1 {
+    font-weight: 700;
+    /* 太字 */
+}
+
+#article-toc a.toc-h2 {
+    font-weight: 400;
+    /* 通常 */
+}
+
 #article-toc a:hover {
     background-color: #eaeaea;
 }
