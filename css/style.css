@@ -33,6 +33,40 @@ body {
     z-index: 1000;
 }
 
+/* ▼スマホ/タブレット（Bootstrap相当でlg未満） */
+@media (max-width: 991.98px) {
+    .layout {
+        flex-direction: column;
+        /* 横→縦に */
+    }
+
+    .layout-spacer {
+        display: none;
+        /* 余白カラムは非表示 */
+    }
+
+    .layout-toc {
+        order: 1;
+        /* TOCを一番上に */
+        width: 100%;
+    }
+
+    .layout-main {
+        order: 2;
+        /* メインをその下に */
+    }
+
+    /* スマホではstickyを無効化して自然な流れに */
+    .layout-toc .container.sticky-top {
+        position: static !important;
+    }
+
+    /* 余白ちょい足し（お好みで） */
+    .layout-toc .card {
+        margin: 0 1rem;
+    }
+}
+
 #article-toc a {
     display: block;
     padding: 4px 8px;
