@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MD Site | サイトテンプレート</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+
+<body class="page">
+    <nav class="navbar navbar-expand-lg fancy-nav" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-3 fancy-brand" href="index.html">マークダウン de Webサイト！</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3">
+                        <a class="nav-link fancy-link" href="index.html?article=マークダウンとは.md">マークダウンとは</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link fancy-link" href="index.html?article=マークダウンでWebサイト制作.md">マークダウンでWebサイト制作</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link fancy-link active" aria-current="page"
+                            href="site-template.html">サイトテンプレート</a>
+                    </li>
+                    <li class="nav-item mx-3 me-5">
+                        <a class="nav-link fancy-link" href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-main">
+        <section class="page-hero container pb-5">
+            <div class="row gy-5 align-items-center">
+                <div class="col-lg-6">
+                    <span class="page-badge">Template Release</span>
+                    <h1 class="page-title">サンプル記事を置くだけで完成する Markdown サイトテンプレート</h1>
+                    <p class="page-lead">
+                        Markdownで書いた記事をフォルダに追加するだけで、JavaScriptがHTMLへ自動変換。
+                        初めてでもデプロイまで迷わず進めるよう、プレビューやビルドの仕組みをセットで用意しました。
+                    </p>
+                    <div class="template-actions">
+                        <a class="action-button" href="https://yuichi853.github.io/md-template/" target="_blank"
+                            rel="noopener noreferrer">プレビューを見る</a>
+                        <a class="action-button" href="https://github.com/yuichi853/md-template" target="_blank"
+                            rel="noopener noreferrer">GitHubで確認</a>
+                        <a class="action-button action-button-download"
+                            href="https://github.com/yuichi853/md-template/archive/refs/heads/main.zip" target="_blank"
+                            rel="noopener noreferrer">ダウンロード ⬇️</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="template-preview" role="img" aria-label="テンプレートのプレビュー画像">
+                        <div class="preview-surface">
+                            <div class="preview-caption">Template preview</div>
+                            <img src="images/template-preview.png" alt="テンプレートのプレビュー画像">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section container pb-5">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <div class="feature-card">
+                        <h2>Markdownを置くだけ</h2>
+                        <p>記事フォルダにMarkdownを入れると、ナビゲーションからすぐに読み込めます。初期設定済みなので面倒なビルドステップは不要です。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-card">
+                        <h2>JavaScriptでHTML化</h2>
+                        <p>テンプレートに同梱されたコンバーターが、見出し・コードブロック・目次まで自動整形。記述と公開に集中できます。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="feature-card">
+                        <h2>ホスティングも簡単</h2>
+                        <p>GitHub Pagesでそのまま公開できる構成。ダウンロードしたテンプレートをアップロードするだけで自分のサイトが完成します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

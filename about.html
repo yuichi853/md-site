@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MD Site | About</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+
+<body class="page">
+    <nav class="navbar navbar-expand-lg fancy-nav" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-3 fancy-brand" href="index.html">マークダウン de Webサイト！</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-3">
+                        <a class="nav-link fancy-link" href="index.html?article=マークダウンとは.md">マークダウンとは</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link fancy-link" href="index.html?article=マークダウンでWebサイト制作.md">マークダウンでWebサイト制作</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link fancy-link" href="site-template.html">サイトテンプレート</a>
+                    </li>
+                    <li class="nav-item mx-3 me-5">
+                        <a class="nav-link fancy-link active" aria-current="page" href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-main">
+        <section class="page-section container pb-5">
+            <div class="row gy-4">
+                <div class="col-lg-5">
+                    <div class="info-card profile-card">
+                        <h2 class="section-title">管理人自己紹介</h2>
+                        <p class="section-sub">Administrator Profile</p>
+                        <p>九州産業大学４年の角田雄一と言います！</p>
+                        <p>大学ではWebデザインをはじめとする、デジタル領域のデザインを幅広く学んでおり、個人では、Webアプリケーションやゲームの開発を趣味で行っています。</p>
+                        <p>このサイトでは、ユーザーが手軽にサイトを公開できるように、テンプレートやガイドを継続的にアップデートしています！</p>
+                        <div class="profile-meta">
+                            <div>
+                                <span class="meta-label">Favorite Stack</span>
+                                <span class="meta-value">Go / Vue.js / TypeScript / GDScript</span>
+                            </div>
+                            <div>
+                                <span class="meta-label">Focus</span>
+                                <span class="meta-value">Godotエンジンを使ったゲーム制作</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="info-card about-card">
+                        <h2 class="section-title">このサイトについて</h2>
+                        <p class="section-sub">About This Site</p>
+                        <p>
+                            MD Siteは、「Markdownで書いて公開する」までの流れを段階的に学べるように構築したリファレンスサイトです。
+                            記事を読み、テンプレートを使い、自分のプロジェクトに取り込むところまでをサポートします。
+                        </p>
+
+                        <p>
+                            本サイトは、Markdownヘビーユーザーである管理人が、「もしMarkdownを使ってWebサイトを作れたらどれほど便利だろう」と考えたことから始まりました。Markdownはシンプルで直感的な記法でありながら、HTMLに変換することで多様な表現が可能です。JekyllやHugoなどの静的サイトジェネレーターは、Markdownを使ったサイト構築方法を提供していますが、初心者にとっては設定やカスタマイズが難しい場合があります。そのため、今回このサイトを立ち上げ、MarkdownでのWebサイト制作をより手軽に始められるようにしました。
+                        </p>
+
+                        <p>このサイトでは、以下の3つのステップでMarkdownを活用したWebサイト制作を学べます。</p>
+                        <div class="about-grid">
+                            <div>
+                                <h3>Learn</h3>
+                                <p>Markdownの基本記法や、構造化されたドキュメント作成の考え方を紹介します。執筆のコツやWeb公開のポイントもわかりやすく解説します。</p>
+                            </div>
+                            <div>
+                                <h3>Build</h3>
+                                <p>用意されたテンプレートに書き込むだけで、ナビゲーションや目次付きのWebサイトが完成します。デザインや構成は自由にカスタマイズ可能です。</p>
+                            </div>
+                            <div>
+                                <h3>Share</h3>
+                                <p>完成したサイトをGitHub Pagesなどのホスティングサービスに公開し、フィードバックを受けながら継続的に改善していくことができます。</p>
+                            </div>
+                        </div>
+                        <p>
+                            これからも、Markdownと静的サイト制作のベストプラクティスを探りながら、学びを楽しめるコンテンツを発信していきます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
