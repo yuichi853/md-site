@@ -138,8 +138,6 @@ Pythonは無料で、ほとんどのパソコンで簡単に導入できます�
    bash run.sh
    ```
 
-   （Windows 10以降であれば「Windows Subsystem for Linux（WSL）」を使うこともできます。）
-
 3. ブラウザで次のURLを開きます：
 
    http://localhost:8000
