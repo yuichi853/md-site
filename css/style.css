@@ -918,14 +918,12 @@ a.landing-primary:active {
     margin-top: 0 !important;
 }
 
-#content h2,
-#content h3 {
+#content h2 {
     position: relative;
     padding-bottom: 0.35rem;
 }
 
-#content h2::after,
-#content h3::after {
+#content h2::after {
     content: "";
     position: absolute;
     left: 0;
