@@ -52,6 +52,16 @@ window.addEventListener("DOMContentLoaded", () => {
                     img.classList.add("img-fluid");
                 });
 
+                contentEl.querySelectorAll("table").forEach(table => {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "table-scroll";
+                    const scroller = document.createElement("div");
+                    scroller.className = "table-scroll-inner";
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(scroller);
+                    scroller.appendChild(table);
+                });
+
                 contentEl.querySelectorAll("a").forEach(link => {
                     const href = link.href;
                     const match = href.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);

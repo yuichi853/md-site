@@ -9,6 +9,10 @@ body {
     overflow-x: hidden;
 }
 
+:root {
+    --nav-offset: 72px;
+}
+
 body::before,
 body::after {
     content: "";
@@ -426,11 +430,21 @@ a.landing-primary:active {
 }
 
 .fancy-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-weight: 700;
     letter-spacing: 0.03em;
     color: #0b2948;
     text-shadow: 0 4px 18px rgba(11, 41, 72, 0.22);
     transition: transform 0.3s ease, text-shadow 0.3s ease;
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.fancy-brand .brand-short {
+    display: none;
 }
 
 .fancy-brand:hover,
@@ -458,6 +472,36 @@ a.landing-primary:active {
 
 .fancy-nav .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(11,41,72,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar .container-fluid {
+    flex-wrap: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .fancy-brand {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .fancy-brand {
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+    }
+
+    .navbar-brand.mx-3 {
+        margin-left: 0.5rem !important;
+        margin-right: 0.5rem !important;
+    }
+
+    .fancy-brand .brand-long {
+        display: none;
+    }
+
+    .fancy-brand .brand-short {
+        display: inline;
+    }
 }
 
 .fancy-link {
@@ -607,6 +651,7 @@ a.landing-primary:active {
     align-items: center;
     gap: 0.65rem;
     padding: 0.55rem 0.75rem;
+    flex-wrap: wrap;
     color: #14324f;
     font-size: 0.85rem;
     font-weight: 500;
@@ -615,6 +660,9 @@ a.landing-primary:active {
     background: rgba(255, 255, 255, 0.78);
     box-shadow: inset 0 0 0 1px rgba(13, 41, 72, 0.05);
     transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    max-width: 100%;
 }
 
 #article-toc a::before {
@@ -695,6 +743,9 @@ a.landing-primary:active {
     text-decoration: none;
     border-bottom: 1px solid rgba(31, 91, 214, 0.35);
     transition: color 0.25s ease, border-color 0.25s ease;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
 }
 
 #content a:hover,
@@ -734,13 +785,44 @@ a.landing-primary:active {
 }
 
 #content table {
-    width: 100%;
+    width: auto;
+    min-width: 100%;
     border-collapse: collapse;
+    margin: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    table-layout: auto;
+}
+
+.table-scroll {
     margin: 1.6rem 0;
-    background: rgba(255, 255, 255, 0.92);
     border-radius: 16px;
-    overflow: hidden;
+    background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 24px 42px -36px rgba(12, 30, 54, 0.8);
+    position: relative;
+}
+
+.table-scroll-inner {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: inherit;
+    padding: 0.5rem 0.75rem;
+}
+
+.table-scroll-inner table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+}
+
+.table-scroll-inner::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-scroll-inner::-webkit-scrollbar-thumb {
+    background: rgba(33, 150, 243, 0.35);
+    border-radius: 999px;
 }
 
 #content thead {
@@ -878,27 +960,85 @@ a.landing-primary:active {
 
     .layout-toc {
         order: 1;
-        /* TOCを一番上に */
         width: 100%;
+        position: static;
+        z-index: auto;
+        margin-top: 0.5rem;
+        margin-bottom: 1.25rem;
     }
 
     .layout-main {
         order: 2;
-        /* メインをその下に */
     }
 
-    /* スマホではstickyを無効化して自然な流れに */
-    .layout-toc .container.sticky-top {
+    .layout-toc.sticky-top {
         position: static !important;
+        top: auto !important;
     }
 
-    /* 余白ちょい足し（お好みで） */
+    .layout-toc .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .layout-toc .card {
-        margin: 0 1rem;
+        margin: 0 0 1.25rem;
+        box-shadow: 0 16px 30px -26px rgba(12, 30, 54, 0.85);
+    }
+
+    .toc-card-body {
+        max-height: none;
+        overflow-y: visible;
     }
 
     .content-card {
         padding: 1.8rem 1.6rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .layout {
+        flex-direction: row;
+        align-items: flex-start;
+        width: min(100%, 960px);
+        margin: 0 auto;
+        padding: 2rem 1.5rem 3.5rem;
+        gap: 1.75rem;
+    }
+
+    .layout-toc {
+        order: 0;
+        flex: 0 0 clamp(220px, 28vw, 260px);
+        width: auto;
+        margin: 0;
+        position: sticky;
+        top: calc(var(--nav-offset, 72px));
+        align-self: flex-start;
+    }
+
+    .layout-main {
+        order: 0;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .layout-toc.sticky-top {
+        position: sticky !important;
+        top: calc(var(--nav-offset, 72px));
+    }
+
+    .layout-toc .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .layout-toc .card {
+        margin: 0;
+    }
+
+    .toc-card-body {
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
     }
 }
 
