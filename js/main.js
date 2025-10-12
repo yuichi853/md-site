@@ -137,6 +137,28 @@ function generateToc() {
     tocContainer.innerHTML = "";
 
     const headings = document.querySelectorAll("#content h1, #content h2");
+    const takenIds = new Set(Array.from(document.querySelectorAll("[id]")).map(el => el.id));
+    const slugify = text => {
+        if (!text) return "";
+        return text
+            .normalize("NFKC")
+            .trim()
+            .toLowerCase()
+            .replace(/[^\p{L}\p{N}\s-]/gu, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-|-$/g, "");
+    };
+    const makeUniqueId = (base, fallbackIndex) => {
+        const normalized = base && base.length ? base : `section-${fallbackIndex}`;
+        let candidate = normalized;
+        let counter = 2;
+        while (takenIds.has(candidate)) {
+            candidate = `${normalized}-${counter++}`;
+        }
+        takenIds.add(candidate);
+        return candidate;
+    };
     const getStickyOffset = () => {
         const stickyNav = document.querySelector(".fancy-nav");
         return (stickyNav ? stickyNav.offsetHeight : 0) + 16;
@@ -156,12 +178,20 @@ function generateToc() {
         return true;
     };
 
-    headings.forEach(heading => {
-        if (!heading.id) {
-            heading.id = heading.textContent.replace(/\s+/g, "-").toLowerCase();
+    headings.forEach((heading, index) => {
+        const currentId = heading.id ? heading.id.trim() : "";
+        if (currentId) {
+            takenIds.delete(currentId);
         }
+
+        const desiredId = currentId || slugify(heading.textContent);
+        const uniqueId = makeUniqueId(desiredId, index + 1);
+        if (uniqueId !== currentId) {
+            heading.id = uniqueId;
+        }
+
         const link = document.createElement("a");
-        link.href = `#${heading.id}`;
+        link.href = `#${uniqueId}`;
         link.textContent = heading.textContent;
 
         const level = parseInt(heading.tagName.substring(1), 10);
@@ -170,14 +200,14 @@ function generateToc() {
         link.addEventListener("click", event => {
             event.preventDefault();
 
-            scrollToHeading(heading.id, "smooth");
+            scrollToHeading(uniqueId, "smooth");
 
             if (typeof window.history.replaceState === "function") {
                 const url = new URL(window.location.href);
-                url.hash = heading.id;
+                url.hash = uniqueId;
                 window.history.replaceState({}, "", url);
             } else {
-                window.location.hash = heading.id;
+                window.location.hash = uniqueId;
             }
         });
 
