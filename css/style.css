@@ -647,11 +647,9 @@ a.landing-primary:active {
 }
 
 #article-toc a {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    padding: 0.55rem 0.75rem;
-    flex-wrap: wrap;
+    position: relative;
+    display: block;
+    padding: 0.55rem 0.75rem 0.55rem 2rem;
     color: #14324f;
     font-size: 0.85rem;
     font-weight: 500;
@@ -670,7 +668,10 @@ a.landing-primary:active {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    transform: scale(0.75);
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%) scale(0.75);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -693,7 +694,7 @@ a.landing-primary:active {
 
 #article-toc a:hover::before,
 #article-toc a:focus::before {
-    transform: scale(1);
+    transform: translateY(-50%) scale(1);
 }
 
 #article-toc a.toc-h1:hover::before,
@@ -719,7 +720,11 @@ a.landing-primary:active {
     font-weight: 500;
     font-size: 0.8rem;
     opacity: 0.9;
-    padding-left: 1.4rem;
+    padding-left: 2.75rem;
+}
+
+#article-toc a.toc-h2::before {
+    left: 2rem;
 }
 
 #content {
