@@ -1061,7 +1061,7 @@ a.landing-primary:active {
 
 #content h1 {
     /* margin-top: 3.5rem; */
-    margin-top: 3.5rem;
+    margin-top: 2rem;
 }
 
 /* 最初の要素が見出しだった場合、上の余白をなくす */
@@ -1070,7 +1070,7 @@ a.landing-primary:active {
 }
 
 #content h2 {
-    margin-top: 3.5rem;
+    margin-top: 1rem;
     position: relative;
     padding-bottom: 0.35rem;
 }
