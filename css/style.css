@@ -13,6 +13,30 @@ body {
     --nav-offset: 72px;
 }
 
+h1 {
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+}
+
+h2 {
+    font-size: clamp(1.45rem, 3vw, 2.1rem);
+}
+
+h3 {
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+}
+
+h4 {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+h5 {
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+}
+
+h6 {
+    font-size: clamp(0.85rem, 1.4vw, 1rem);
+}
+
 body::before,
 body::after {
     content: "";
@@ -118,7 +142,7 @@ body::after {
 }
 
 .landing-title {
-    font-size: clamp(2.4rem, 3.8vw, 3.6rem);
+    font-size: clamp(2rem, 2.8vw, 2.9rem);
     font-weight: 800;
     letter-spacing: 0.01em;
     margin-top: 1.6rem;
@@ -127,7 +151,7 @@ body::after {
 }
 
 .landing-lead {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     color: #29496b;
     max-width: 600px;
     margin-bottom: 1.8rem;
@@ -322,7 +346,7 @@ a.landing-primary:active {
 }
 
 .feature-card h3 {
-    font-size: 1.35rem;
+    font-size: 1.1rem;
     margin-bottom: 0.8rem;
     color: #0b2948;
 }
@@ -408,7 +432,7 @@ a.landing-primary:active {
 .bottom-copy {
     margin: 0;
     max-width: 640px;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     color: #0b2948;
 }
 
@@ -438,7 +462,7 @@ a.landing-primary:active {
     color: #0b2948;
     text-shadow: 0 4px 18px rgba(11, 41, 72, 0.22);
     transition: transform 0.3s ease, text-shadow 0.3s ease;
-    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    font-size: clamp(1rem, 2.1vw, 1.25rem);
     line-height: 1;
     white-space: nowrap;
 }
@@ -480,7 +504,7 @@ a.landing-primary:active {
 
 @media (max-width: 575.98px) {
     .fancy-brand {
-        font-size: 1.05rem;
+        font-size: 0.98rem;
     }
 }
 
@@ -729,7 +753,7 @@ a.landing-primary:active {
 
 #content {
     color: #102a43;
-    font-size: 1.03rem;
+    font-size: 0.98rem;
     letter-spacing: 0.01em;
 }
 
@@ -1060,19 +1084,33 @@ a.landing-primary:active {
 }
 
 #content h1 {
-    /* margin-top: 3.5rem; */
     margin-top: 2rem;
-}
-
-/* 最初の要素が見出しだった場合、上の余白をなくす */
-#content> :first-child {
-    margin-top: 0 !important;
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
 }
 
 #content h2 {
     margin-top: 1rem;
     position: relative;
     padding-bottom: 0.35rem;
+    font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+}
+
+#content h3 {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+}
+
+#content h4 {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+#content h5,
+#content h6 {
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+}
+
+/* 最初の要素が見出しだった場合、上の余白をなくす */
+#content> :first-child {
+    margin-top: 0 !important;
 }
 
 #content h2::after {
@@ -1165,7 +1203,7 @@ body.page {
 }
 
 .page-title {
-    font-size: clamp(2.2rem, 3.2vw, 3rem);
+    font-size: clamp(1.85rem, 2.5vw, 2.4rem);
     font-weight: 800;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
@@ -1173,7 +1211,7 @@ body.page {
 }
 
 .page-lead {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     color: #29496b;
     margin-bottom: 2rem;
 }
@@ -1310,7 +1348,7 @@ body.page {
 }
 
 .feature-card h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-bottom: 0.75rem;
 }
 
@@ -1342,7 +1380,7 @@ body.page {
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.35rem;
 }
 
@@ -1382,7 +1420,7 @@ body.page {
 }
 
 .about-grid h3 {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     margin-bottom: 0.5rem;
 }
 
