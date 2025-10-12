@@ -780,7 +780,7 @@ a.landing-primary:active {
 
 #content img {
     max-width: 100%;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0 1.5rem 0;
     border-radius: 18px;
     box-shadow: 0 18px 38px -30px rgba(12, 30, 54, 0.65);
 }
@@ -1054,12 +1054,18 @@ a.landing-primary:active {
     margin-bottom: 1rem;
 }
 
+#content h1 {
+    /* margin-top: 3.5rem; */
+    margin-top: 3.5rem;
+}
+
 /* 最初の要素が見出しだった場合、上の余白をなくす */
 #content> :first-child {
     margin-top: 0 !important;
 }
 
 #content h2 {
+    margin-top: 3.5rem;
     position: relative;
     padding-bottom: 0.35rem;
 }
@@ -1074,6 +1080,10 @@ a.landing-primary:active {
     border-radius: 999px;
     background: linear-gradient(90deg, rgba(33, 150, 243, 0.75), rgba(156, 39, 176, 0.75));
     box-shadow: 0 6px 14px -10px rgba(12, 30, 54, 0.9);
+}
+
+#content h3 {
+    margin-top: 2.5rem;
 }
 
 #content hr {
