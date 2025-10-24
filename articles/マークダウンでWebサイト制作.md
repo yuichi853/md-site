@@ -73,12 +73,12 @@ Pythonは無料で、ほとんどのパソコンで簡単に導入できます�
 ## Mac（ターミナル）の場合
 
 1. ダウンロードしたテンプレートのフォルダを探します。  
-   例：`Downloads/md-site-template`
+   例：`Downloads/md-site-template-main`
 
 2. 次のコマンドを入力してフォルダに移動：
 
    ```bash
-   cd ~/Downloads/md-site-template
+   cd ~/Downloads/md-site-template-main
    ```
 
    ※「cd」は「change directory（フォルダを移動）」の意味です。
@@ -89,7 +89,7 @@ Pythonは無料で、ほとんどのパソコンで簡単に導入できます�
 2. 次のように入力（フォルダの場所は自分の環境に合わせて変更）：
 
    ```bash
-   cd C:\Users\ユーザー名\Downloads\md-site-template
+   cd C:\Users\ユーザー名\Downloads\md-site-template-main
    ```
 
 ---
@@ -184,7 +184,7 @@ Pythonは無料で、ほとんどのパソコンで簡単に導入できます�
 # 7. ファイル構成の概要
 
 ```
-md-site-template/
+md-site-template-main/
 ├── index.html          ← トップページ（サイトのメインファイル）
 ├── about.html          ← 自己紹介・サイト説明ページなどに利用可能
 ├── README.md           ← このテンプレートの説明書
