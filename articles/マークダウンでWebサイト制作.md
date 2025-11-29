@@ -312,7 +312,7 @@ md-site-template-main/
 
 ---
 
-## 💡補足：削除・変更してよい／いけない一覧
+## 各ファイルの削除・変更
 
 | ファイル / フォルダ            |  削除 |  変更 | 備考                    |
 | ---------------------- | :-: | :-: | --------------------- |
@@ -336,6 +336,193 @@ md-site-template-main/
 
 ---
 
+## Markdown表示のしくみ
+
+ここからは、**このテンプレートでどのようにMarkdownファイルをHTMLに変換し、サイトに表示しているのか** を説明します。  
+この仕組みを理解しておくと、ヘッダーやレイアウトを安心してカスタマイズできます。
+
+---
+
+### 1. ブラウザが開いているのは「ずっと index.html」
+
+ナビゲーション部分のリンクは、次のようになっています。
+
+```html
+<li><a href="index.html">Home</a></li>
+<li><a href="?article=article1.md">Sample1</a></li>
+<li><a href="?article=article2.md">Sample2</a></li>
+````
+
+ここで重要なのは、
+
+* `article1.md` などの **Markdown ファイルそのものを開いているわけではない**
+* `?article=article1.md` のように、**クエリパラメータ（URLの「?」以降の情報）だけが変わっている**
+
+という点です。
+
+例えば `Sample1` をクリックすると、ブラウザのURLは次のようになります。
+
+* `http://localhost:8080/index.html?article=article1.md`
+
+しかし、サーバーから返ってくる HTML ファイルは **どの場合も `index.html` の1種類だけ** です。
+つまり、
+
+> ブラウザが読み込んでいるページは、最初から最後まで「index.html のまま」
+
+であり、**Markdown はあくまで「中身のデータ」として JavaScript から読み込まれているだけ**、という構造になっています。
+
+---
+
+### 2. `<html>` タグのクラスで「トップページ」か「記事ページ」かを切り替える
+
+`index.html` の `<head>` には、次のようなスクリプトが書かれています。
+
+```html
+<script>
+    (function () {
+        const params = new URLSearchParams(window.location.search);
+        const htmlEl = document.documentElement;
+        if (params.get("article")) {
+            htmlEl.classList.remove("mode-landing");
+            htmlEl.classList.add("mode-article");
+        } else {
+            htmlEl.classList.remove("mode-article");
+            htmlEl.classList.add("mode-landing");
+        }
+    })();
+</script>
+```
+
+ここでやっていることはシンプルです。
+
+1. `window.location.search` から `?article=...` の部分を取得
+2. `article` というパラメータが **存在するかどうか** を判定
+3. 存在すれば `<html>` に `mode-article` クラスを付ける
+   存在しなければ `mode-landing` クラスを付ける
+
+CSS 側では、このクラスによって
+
+* 「トップページ用のレイアウト」（landing）
+* 「記事ページ用のレイアウト」（article）
+
+を切り替えています。
+
+つまり、**開いている HTML は同じ `index.html` だけれど、「見せ方」だけをクラスで変えている**、という仕組みです。
+
+---
+
+### 3. main.js が Markdown を取得して `<div id="content">` に流し込む
+
+`js/main.js` では、ページ読み込み完了時に次の処理が走ります。
+
+```js
+window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(location.search);
+    const articleFile = params.get("article") || "article1.md";
+
+    fetch(`articles/${articleFile}`)
+        .then(res => res.text())
+        .then(mdText => {
+            const html = marked.parse(mdText);
+            const contentEl = document.getElementById("content");
+            contentEl.innerHTML = html;
+            ...
+        });
+});
+```
+
+このコードの流れは次のとおりです。
+
+1. URL から `article` パラメータを取得
+
+   * 例：`?article=how-to-run.md` → `"how-to-run.md"`
+   * パラメータがない場合は `"article1.md"` をデフォルトとして使用
+2. `fetch("articles/ファイル名")` で、`articles/` フォルダ内の Markdown ファイルを読み込む
+3. 読み込んだテキスト（Markdown）を `marked.parse(...)` で HTML に変換
+4. 変換した HTML を、`<div id="content">` の中に `innerHTML` で挿入
+
+ポイントは、
+
+> **書き換えているのは `#content` の中身だけ**
+
+ということです。
+
+ヘッダーやフッター、メインのレイアウト枠などは、`index.html` 側に固定で書かれており、
+JavaScript はそこには一切触りません。だからこそ、
+
+* ページを「移動」しているように見えても
+* 実際には **ヘッダーや全体レイアウトはそのまま残り、記事部分だけが差し替わっている**
+
+という動きになります。
+
+---
+
+### 4. Front Matter（メタ情報）とタイトル・日付の反映
+
+Markdown ファイルの冒頭に、次のような「Front Matter」を書くことができます。
+
+```markdown
+---
+title: MarkdownでWebサイトを作る手順
+date: 2025-11-29
+---
+```
+
+`main.js` では、この部分を切り出して、次のように扱っています。
+
+```js
+const frontMatterMatch = mdText.match(/^---\n([\s\S]*?)\n---\n?/);
+let frontMatter = {};
+if (frontMatterMatch) {
+    const fmText = frontMatterMatch[1];
+    fmText.split('\n').forEach(line => {
+        const [key, ...rest] = line.split(':');
+        if (key && rest.length > 0) {
+            frontMatter[key.trim()] = rest.join(':').trim();
+        }
+    });
+
+    mdText = mdText.slice(frontMatterMatch[0].length);
+}
+```
+
+* `---` 〜 `---` の間を Front Matter として認識
+* `title: ...` や `date: ...` を取り出して `frontMatter` オブジェクトに保存
+* Front Matter 部分は本文からは削除（画面には表示しない）
+
+その後、次のようにして HTML 側に反映しています。
+
+```js
+if (frontMatter.title) {
+    const titleEl = document.getElementById("article-title");
+    if (titleEl) titleEl.textContent = frontMatter.title;
+    document.title = frontMatter.title;
+}
+if (frontMatter.date) {
+    const dateEl = document.getElementById("article-date");
+    if (dateEl) dateEl.textContent = frontMatter.date;
+}
+```
+
+これにより、
+
+* 記事ページ内の見出し（`#article-title`）
+* ブラウザのタブのタイトル（`document.title`）
+* 記事の日付表示（`#article-date`）
+
+などが、**Markdown 側のメタ情報から自動で埋め込まれる** ようになっています。
+
+---
+
+まとめると、
+
+> * 実際に開いているのは常に `index.html`
+> * URL の `?article=...` で「どの Markdown を読み込むか」だけを変えている
+> * レイアウトの枠（ヘッダー・フッター等）は HTML 側に固定、記事だけ JS で差し替え
+
+という「簡易なシングルページアプリ」のような仕組みになっています。
+
+---
 
 # 8. メインページのレイアウトカスタマイズ
 
